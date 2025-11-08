@@ -18,14 +18,51 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
+        int opcion = 0;
+
+        do {
+            mostrarMenu();
+            opcion = sc.nextInt();
+            sc.nextLine();
+
+            switch (opcion) {
+                case 1:
+                    if (totalProductos < 3) {
+                        registrarProducto(sc);
+                    } else {
+                        System.out.println("Limite de productos alcanzado.");
+                    }
+                    break;
+                case 2:
+                    mostrarProductos();
+                    break;
+                case 3:
+                    calcularInventarioTotal();
+                    break;
+                case 4:
+                    if (totalProductos > 0) {
+                        aplicarDescuento(sc);
+                    } else {
+                        System.out.println("No hay productos registrados para aplicar descuento.");
+                    }
+                    break;
+                case 5:
+                    System.out.println("Saliendo del sistema...");
+                    break;
+                default:
+                    System.out.println("Opcion no valida. Intente de nuevo.");
+            }
+        } while (opcion != 4);
+        sc.close();
     }
 
     public static void mostrarMenu() {
         System.out.println("Sistema gestion de tienda");
         System.out.println("1. Registrar producto");
         System.out.println("2. Mostrar producto");
-        System.out.println("3. aplicar descuento a producto");
-        System.out.println("4. salir");
+        System.out.println("3. Calcular inventario total");
+        System.out.println("4. aplicar descuento a producto");
+        System.out.println("5. salir");
         System.out.println("Seleccione una opcion: ");
     }
 
